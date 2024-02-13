@@ -13,8 +13,8 @@ public:
         while (i < j) {
             if (s[i] != s[j])
                 return false;
-            ++i;
-            --j;
+            i++;
+            j--;
         }
         return true;
     }
