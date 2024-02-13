@@ -1,20 +1,18 @@
 class Solution {
 public:
     string firstPalindrome(vector<string>& words) {
-        for (int i = 0; i < words.size(); ++i) {
-            if (isPalindrome(words[i])) {
-                return words[i];
+        for (auto it:words) {
+            if (isPal(it)) {
+                return it;
             }
         }
         return "";
     }
-    bool isPalindrome(string s) {
-        int i = 0, j = s.length() - 1;
-        while (i < j) {
-            if (s[i] != s[j])
+    bool isPal(string s) {
+        int n = s.size();
+        for (int i =0; i<n/2; i++) {
+            if (s[i] != s[n-i-1])
                 return false;
-            i++;
-            j--;
         }
         return true;
     }
