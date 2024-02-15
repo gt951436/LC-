@@ -1,10 +1,7 @@
 class Solution {
 public:
     long long largestPerimeter(vector<int>& nums) {
-        long long int sum = 0;
-        for (auto it : nums) {
-            sum += it;
-        }
+        long long int sum = accumulate(nums.begin(),nums.end(),0LL);
         priority_queue<int>pq(nums.begin(),nums.end());
         while (pq.size() > 2) {
             auto tp = pq.top();
