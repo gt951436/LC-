@@ -5,16 +5,14 @@ public:
         for (auto it : nums) {
             sum += it;
         }
-        sort(nums.begin(), nums.end(), greater<>());
-        long long int maxPeri = -1;
-        for (auto it : nums) {
-            if (sum - it > it) {
-                maxPeri = sum;
-                break;
-            } else {
-                sum -= it;
-            }
+        priority_queue<int>pq(nums.begin(),nums.end());
+        while (pq.size() > 2) {
+            auto tp = pq.top();
+            if (sum - tp > tp) 
+            return sum;
+            pq.pop();
+            sum -= tp; 
         }
-        return maxPeri;
+        return -1;
     }
 };
