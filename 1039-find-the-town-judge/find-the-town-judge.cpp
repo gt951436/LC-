@@ -1,27 +1,19 @@
 class Solution {
 public:
     int findJudge(int n, vector<vector<int>>& trust) {
-        unordered_map<int, unordered_set<int>> trustMp;
-        for(auto tPair : trust){
-            int person = tPair[0], trustedPerson = tPair[1];
-         
-            trustMp[person].insert(trustedPerson);
+           vector<int> p(n+1, 0);
+        for(int i=0; i<trust.size(); i++){
+            p[trust[i][1]]++;
+            p[trust[i][0]]--; 
         }
-        int leftPer = 1, rightPer = n;
-        while(leftPer < rightPer){
-            if(trustMp[leftPer].count(rightPer) != 0){
-                leftPer++;
-            }else rightPer--;
+        int label = -1, cnt = 0;
+        for(int i=1; i<=n; i++){
+            if(label == -1 && p[i] == n-1){
+                label = i;
+                cnt++;
+                if(cnt > 1) return -1;
+            } 
         }
-       
-        int cand = leftPer, candTrustNumber = 0;
-        for(auto & tPair : trust){
-            if(tPair[0] == cand){
-                candTrustNumber--;
-            }else if(tPair[1] == cand){
-                candTrustNumber++;
-            }
-        }
-        return (candTrustNumber == n-1) ? cand : -1;
+        return label;
     }
 };
