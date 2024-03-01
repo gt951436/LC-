@@ -1,22 +1,22 @@
 class Solution {
 public:
-    string maximumOddBinaryNumber(string s) 
-    {
-        int ones=0,zeroes=0;
-        for(int i=0;i<s.length();++i){
-            if(s[i]=='1')
-            ones++;
+    string maximumOddBinaryNumber(string s) {
+        string ans = "";
+        ans += '1';
+        int ones = -1, zeroes = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            if (s[i] == '1')
+                ones++;
+            else
+                zeroes++;
         }
-        zeroes = s.length() - ones;
-        for(int i=0;i<(ones-1);++i)
-        {
-            s[i]='1';
+        for (int i = 1; i <= zeroes; ++i) {
+            ans += '0';
         }
-        for(int i=(ones-1);i<s.length()-1;++i){
-            s[i]='0';
+        for (int i = 1; i <= ones; ++i) {
+            ans += '1';
         }
-        s[s.length()-1]='1';
-
-        return s;
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
