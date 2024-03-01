@@ -4,11 +4,9 @@ public:
         string ans = "";
         ans += '1';
         int ones = -1, zeroes = 0;
-        for (int i = 0; i < s.length(); ++i) {
-            if (s[i] == '1')
-                ones++;
-            else
-                zeroes++;
+        for (auto it : s) {
+            ones += (it == '1');
+            zeroes += (it == '0');
         }
         for (int i = 1; i <= zeroes; ++i) {
             ans += '0';
