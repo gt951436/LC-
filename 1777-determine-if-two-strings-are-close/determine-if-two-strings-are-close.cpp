@@ -16,12 +16,6 @@ public:
         }
         sort(f1.begin(), f1.end());
         sort(f2.begin(), f2.end());
-        // return (f1 == f2);
-        for (int i = 0; i < 26; i++) {
-            if (f1[i] != f2[i]) {
-                return false;
-            }
-        }
-        return true;
+        return (f1 == f2);
     }
 };
