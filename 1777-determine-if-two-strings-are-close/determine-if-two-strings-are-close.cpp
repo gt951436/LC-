@@ -1,19 +1,27 @@
 class Solution {
 public:
     bool closeStrings(string word1, string word2) {
-        vector<int> v1(26, 0);
-        vector<int> v2(26, 0);
-        set<char> s1, s2;
+        vector<int> f1(26, 0);
+        vector<int> f2(26, 0);
         for (char it : word1) {
-            v1[it - 'a']++;
-            s1.insert(it);
+            f1[it - 'a']++;
         }
         for (char it : word2) {
-            v2[it - 'a']++;
-            s2.insert(it);
+            f2[it - 'a']++;
         }
-        sort(v1.begin(), v1.end());
-        sort(v2.begin(), v2.end());
-        return (v1 == v2 && s1 == s2);
+        for (int i = 0; i < 26; i++) {
+            if ((f1[i] == 0 && f2[i] != 0) || (f1[i] != 0 && f2[i] == 0)) {
+                return false;
+            }
+        }
+        sort(f1.begin(), f1.end());
+        sort(f2.begin(), f2.end());
+        return (f1 == f2);
+        // for (int i = 0; i < 26; i++) {
+        //     if (f1[i] != f2[i]) {
+        //         return false;
+        //     }
+        // }
+        // return true;
     }
 };
