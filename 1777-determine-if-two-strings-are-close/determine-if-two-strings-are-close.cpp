@@ -1,7 +1,8 @@
 class Solution {
 public:
     bool closeStrings(string word1, string word2) {
-        vector<int> v1(26, 0), v2(26, 0);
+        vector<int> v1(26, 0);
+        vector<int> v2(26, 0);
         set<char> s1, s2;
         for (char it : word1) {
             v1[it - 'a']++;
