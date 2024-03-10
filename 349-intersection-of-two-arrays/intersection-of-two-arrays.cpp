@@ -3,23 +3,18 @@ public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
         int n1 = nums1.size();
         int n2 = nums2.size();
-        sort(nums1.begin(), nums1.end());
-        sort(nums2.begin(), nums2.end());
-        unordered_set<int> unique;
-        vector<int>ans;
-        int i = 0, j = 0;
-        while (i < n1 && j < n2) {
-            if (nums1[i] == nums2[j]) {
-                unique.insert(nums1[i]);
-                ++i;
-                ++j;
-            } else if (nums1[i] > nums2[j]) {
-                j++;
-            } else
-                i++;
+        vector<int> ans;
+        bitset<1000> bs1, bs2;
+        for (int it : nums1) {
+            bs1.set(it);
         }
-        for(auto it:unique){
-            ans.push_back(it);
+        for(int it:nums2){
+            if(bs1.test(it))
+            bs2.set(it);
+        }
+        for(int i=0;i<bs2.size();++i){
+            if(bs2.test(i))
+            ans.push_back(i);
         }
         return ans;
     }
