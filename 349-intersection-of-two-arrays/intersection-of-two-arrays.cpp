@@ -4,7 +4,7 @@ public:
         int n1 = nums1.size();
         int n2 = nums2.size();
         vector<int> ans;
-        bitset<1000> bs1, bs2;
+        bitset<1001> bs1, bs2;
         for (int it : nums1) {
             bs1.set(it);
         }
