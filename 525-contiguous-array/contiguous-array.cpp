@@ -7,9 +7,9 @@ public:
         int len = 0;
         for (int i = 0; i < n; i++) {
             if (nums[i] == 0)
-                --sum;
+                sum--;
             else
-                ++sum;
+                sum++;
             if (sum == 0) {
                 len = i + 1;
             } else if (mp.find(sum) != mp.end()) {
