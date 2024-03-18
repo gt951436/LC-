@@ -2,8 +2,8 @@ class Solution {
 public:
     int findMinArrowShots(vector<vector<int>>& arr) {
         int n = arr.size();
-        // if (n == 0)
-        //     return 0;
+        if (n == 0)
+            return 0;
         sort(arr.begin(), arr.end());
         vector<int> prev = arr[0];
         int cnt = 1;
