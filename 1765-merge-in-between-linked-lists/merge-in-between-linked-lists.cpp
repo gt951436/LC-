@@ -13,10 +13,10 @@ public:
     ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
         ListNode* l = NULL;
         ListNode* r = list1;
-        for (int i = 0; i < b+1; ++i) {
-            if (i == a - 1)
+        for (int i = 0; i <= b; ++i) {
+            if (i == a - 1) {
                 l = r;
-
+            }
             r = r->next; // r is at b.
         }
         l->next = list2;
