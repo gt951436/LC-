@@ -1,27 +1,42 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        stack<int> stack;
-        ListNode* curr = head;
-        while (curr) {
-            stack.push(curr->val);
-            curr = curr->next;
+        if (head == nullptr || head->next == nullptr)
+            return true;
+
+        ListNode* fast = head;
+        ListNode* slow = head;
+
+        // Find the middle of the linked list
+        while (fast->next != nullptr && fast->next->next != nullptr) {
+            fast = fast->next->next;
+            slow = slow->next;
         }
-        curr = head;
-        while (curr && curr->val == stack.top()) {
-            stack.pop();
-            curr = curr->next;
+        // Reverse the second half of the linked list
+        ListNode* tail = reverse(slow->next);
+
+        // Compare the two halves
+        while (tail != nullptr) {
+            if (tail->val != head->val) {
+                return false;
+            } else {
+                tail = tail->next;
+                head = head->next;
+            }
         }
-        return curr == nullptr;
+        return true;
+    }
+
+private:
+    ListNode* reverse(ListNode* curr) {
+        ListNode* prev = nullptr;
+        ListNode* nextNode = nullptr;
+        while (curr != nullptr) {
+            nextNode = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        return prev;
     }
 };
