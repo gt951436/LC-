@@ -6,21 +6,22 @@ public:
 
         ListNode* fast = head;
         ListNode* slow = head;
-
+       // ListNode* pr = nullptr; // to divide list at middle
+       
         // Find the middle of the linked list
         while (fast->next != nullptr && fast->next->next != nullptr) {
             fast = fast->next->next;
             slow = slow->next;
         }
         // Reverse the second half of the linked list
-        ListNode* tail = reverse(slow->next);
+        slow = reverse(slow->next);
 
         // Compare the two halves
-        while (tail != nullptr) {
-            if (tail->val != head->val) {
+        while (slow != nullptr && head != nullptr) {
+            if (slow->val != head->val) {
                 return false;
             } else {
-                tail = tail->next;
+                slow = slow->next;
                 head = head->next;
             }
         }
@@ -30,9 +31,9 @@ public:
 private:
     ListNode* reverse(ListNode* curr) {
         ListNode* prev = nullptr;
-        ListNode* nextNode = nullptr;
+        ListNode* nextNode = curr;
         while (curr != nullptr) {
-            nextNode = curr->next;
+            nextNode = nextNode->next;
             curr->next = prev;
             prev = curr;
             curr = nextNode;
