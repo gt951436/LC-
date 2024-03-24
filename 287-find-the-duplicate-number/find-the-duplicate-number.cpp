@@ -1,14 +1,22 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        unordered_map<int,int>mp;
-        for(int it: nums){
-            mp[it]++;
+        // HARE AND TORTOISE ALGORITHM
+        int slow = nums[0];
+        int fast = nums[0];
+
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+        while (slow != fast) { //cycle detection
+            slow = nums[slow];
+            fast = nums[nums[fast]];
         } 
-        for(auto it:mp){
-            if(it.second >=2)
-            return it.first;
+        slow = nums[0]; 
+
+        while(slow!=fast){  // l1+l2 = n*k ===> l1 = n*k - l2
+            slow=nums[slow];
+            fast = nums[fast];
         }
-        return -1;
+        return slow; // or fast
     }
 };
