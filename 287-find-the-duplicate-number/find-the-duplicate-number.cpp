@@ -2,10 +2,11 @@ class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
         // HARE AND TORTOISE ALGORITHM
-        //int s = nums[0], f = nums[0]; // SLOW , FAST
+        int s = nums[0];  //SLOW
+        int f = nums[0]; //FAST
 
-        int s = nums[nums[0]];
-        int f = nums[nums[nums[0]]];
+        s = nums[nums[0]];
+        f = nums[nums[nums[0]]];
 
         while (s != f) { // cycle detection
             s = nums[s];
