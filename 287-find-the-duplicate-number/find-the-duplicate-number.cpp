@@ -5,8 +5,8 @@ public:
         int s = nums[0];  //SLOW
         int f = nums[0]; //FAST
 
-        s = nums[nums[0]];
-        f = nums[nums[nums[0]]];
+        s = nums[s];
+        f = nums[nums[f]];
 
         while (s != f) { // cycle detection
             s = nums[s];
