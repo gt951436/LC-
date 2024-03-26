@@ -8,17 +8,14 @@ public:
         for (int i = 0; i < n; ++i) {
             if (nums[i] == 1) {
                 isOne = 1;
-                break;
             }
-        }
-        if (!isOne)
-            return 1; // if 1 is not present
-        
-        for (int i = 0; i < n; ++i) {
             if (nums[i] <= 0 || nums[i] > n) {
                 nums[i] = 1;
             }
         }
+        if (!isOne)
+            return 1; // if 1 is not present
+
         for (int i = 0; i < n; ++i) {
             int num = abs(nums[i]);
             int idx = num - 1;
