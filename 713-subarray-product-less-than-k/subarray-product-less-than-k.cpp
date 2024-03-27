@@ -14,8 +14,7 @@ public:
                 prd /= nums[i];
                 ++i;
             }
-            if (prd < k)
-                subarrays += (j - i + 1);
+            subarrays += (j - i + 1);
         }
         return subarrays;
     }
