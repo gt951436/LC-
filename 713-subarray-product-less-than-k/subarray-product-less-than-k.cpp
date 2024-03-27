@@ -8,7 +8,7 @@ public:
         int prd = 1;
         int subarrays = 0;
         int i = 0;
-        for (int j = 0; j < n; ++j) {
+        for (int j = 0; i<n && j < n; ++j) {
             prd *= nums[j];
             while (prd >= k) {
                 prd /= nums[i];
