@@ -9,7 +9,7 @@ public:
         int e = 0;
         while (e < n) {
             mp[nums[e]]++;
-            while(s<e && mp[nums[e]]>k){
+            while(s<e && mp[nums[e]]==k+1){
                 mp[nums[s]]--;
                 ++s;
             }
