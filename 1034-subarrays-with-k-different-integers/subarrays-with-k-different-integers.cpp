@@ -1,11 +1,11 @@
 class Solution {
 public:
     int subarraysWithKDistinct(vector<int>& nums, int k) {
-        return KatMost(nums, k) - KatMost(nums, k - 1);
+        return atMost_K(nums, k) - atMost_K(nums, k - 1);
     }
 
 public:
-    int KatMost(vector<int>& nums, int k) {
+    int atMost_K(vector<int>& nums, int k) {
         unordered_map<int, int> mp;
         int s = 0;
         int cnt = 0;
