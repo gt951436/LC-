@@ -4,7 +4,7 @@ public:
         return KatMost(nums, k) - KatMost(nums, k - 1);
     }
 
-private:
+public:
     int KatMost(vector<int>& nums, int k) {
         unordered_map<int, int> mp;
         int s = 0;
