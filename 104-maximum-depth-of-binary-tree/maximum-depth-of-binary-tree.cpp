@@ -11,13 +11,36 @@
  */
 class Solution {
 public:
-    int maxDepth(TreeNode* root) {
+    int levelOrderTraversal2(TreeNode  * root){
         if(root == NULL){
             return 0;
         }
-        int lh = maxDepth(root->left);
-        int rh = maxDepth(root->right);
+        queue<TreeNode *>q;
+        q.push(root);
+        q.push(NULL);
+        int depth = 0;
+        while(q.size() > 1){
+            TreeNode * temp = q.front();
+            q.pop();
+            if(temp == NULL){
+                q.push(NULL);
+                depth++;
+            }
+            else{
+                if(temp->left!=NULL){
+                    q.push(temp->left);
+                }
+                if(temp->right!=NULL){
+                    q.push(temp->right);
+                }
 
-        return max(lh,rh) + 1;
+            }
+
+        }
+        return depth + 1;
+    }
+    int maxDepth(TreeNode* root) {
+        return levelOrderTraversal2(root);
+        
     }
 };
