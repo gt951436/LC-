@@ -5,8 +5,9 @@ public:
         while (i < s.length() && j < t.length()) {
             if (s[i] == t[j]) {
                 ++j;
-            }
-            ++i;
+                ++i;
+            } else
+                ++i;
         }
         return t.length() - j;
     }
