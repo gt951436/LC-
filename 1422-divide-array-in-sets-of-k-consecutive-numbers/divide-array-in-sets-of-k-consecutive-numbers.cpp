@@ -10,13 +10,14 @@ public:
         }
         sort(nums.begin(), nums.end());
         for (int it : nums) {
-            if (mp[it] > 0)
+            if (mp[it] > 0) {
                 for (int i = it; i < it + k; ++i) {
                     mp[i]--;
                     if (mp[i] < 0) {
                         return false;
                     }
                 }
+            }
         }
         return true;
     }
