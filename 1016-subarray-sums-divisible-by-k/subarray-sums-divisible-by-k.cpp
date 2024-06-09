@@ -6,8 +6,8 @@ public:
         vector<int> gp(k);
         gp[0] = 1;
 
-        for (int num : nums) {
-            prefixMod = (prefixMod + num % k + k) % k;
+        for (int it : nums) {
+            prefixMod = (prefixMod + it % k + k) % k;
             result += gp[prefixMod];
             gp[prefixMod]++;
         }
