@@ -14,8 +14,8 @@ public:
         long long m = s + (e - s) / 2;
         if (m * m == b)
             return true;
-        if (m * m > b)
+        if (m * m > b) // b ka root left mein lie krta hai
             return BS(s, m - 1, b);
-        return BS(m + 1, e, b);
+        return BS(m + 1, e, b);// b ka root ryt mein lie krta hai
     }
 };
