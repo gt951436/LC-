@@ -1,18 +1,21 @@
 class Solution {
 public:
     bool judgeSquareSum(int c) {
-        for (long a = 0; a * a <= c; ++a) {
-            double b = sqrt(c -(long long)(a*a));
-            if(b==(int)b)
-            return true;
+        for (long a = 0; a * a <= c; a++) {
+            int b = c - (int)(a * a);
+            if (BS(0, b, b))
+                return true;
         }
         return false;
     }
-    // bool sqRoot(int x) {
-    //     if (x < 0) {
-    //         return false;
-    //     }
-    //     long long SQRT = static_cast<long long>(sqrt(x));
-    //     return (SQRT * SQRT == x);
-    // }
+    bool BS(long long s, long long e, int b) {
+        if (s > e)
+            return false;
+        long long m = s + (e - s) / 2;
+        if (m * m == b)
+            return true;
+        if (m * m > b)
+            return BS(s, m - 1, b);
+        return BS(m + 1, e, b);
+    }
 };
