@@ -2,7 +2,7 @@ class Solution {
 public:
     int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
         int n = customers.size();
-        int maxSat = 0, initialTotalSat = 0;
+        int initialTotalSat = 0;
         for (int i = 0; i < n; ++i) {
             initialTotalSat += (1 - grumpy[i]) * customers[i];
         }
