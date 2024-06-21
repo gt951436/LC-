@@ -2,19 +2,20 @@ class Solution {
 public:
     int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
         int n = customers.size();
-        int initialTotalSat = 0;
+        int totalSat = 0;
         for (int i = 0; i < n; ++i) {
-            initialTotalSat += (1 - grumpy[i]) * customers[i];
+            totalSat += (1 - grumpy[i]) * customers[i];
         }
-        int maxExtra = 0;
-        for (int i = 0; i < n - minutes + 1; ++i) {
-            int currWinUnSat = 0; // unsatisfied customers
-            for (int j = i; j < i + minutes && j < n; ++j) {
-                if (grumpy[j])
-                    currWinUnSat += customers[j];
-            }
-            maxExtra = max(maxExtra, currWinUnSat);
+        int unsatCustomers = 0;
+        for (int i = 0; i < minutes; ++i) {
+            unsatCustomers += grumpy[i] * customers[i];
         }
-        return initialTotalSat + maxExtra;
+        int maxunsatCustomers = unsatCustomers;
+        for (int i = minutes; i < n; ++i) {
+            unsatCustomers += grumpy[i] * customers[i];
+            unsatCustomers -= grumpy[i - minutes] * customers[i - minutes];
+            maxunsatCustomers = max(maxunsatCustomers, unsatCustomers);
+        }
+        return maxunsatCustomers+totalSat;
     }
 };
