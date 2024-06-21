@@ -11,11 +11,13 @@ public:
             unsatCustomers += grumpy[i] * customers[i];
         }
         int maxunsatCustomers = unsatCustomers;
+        int j = 0;
         for (int i = minutes; i < n; ++i) {
             unsatCustomers += grumpy[i] * customers[i];
-            unsatCustomers -= grumpy[i - minutes] * customers[i - minutes];
+            unsatCustomers -= grumpy[j] * customers[j];
+            j += 1;
             maxunsatCustomers = max(maxunsatCustomers, unsatCustomers);
         }
-        return maxunsatCustomers+totalSat;
+        return maxunsatCustomers + totalSat;
     }
 };
