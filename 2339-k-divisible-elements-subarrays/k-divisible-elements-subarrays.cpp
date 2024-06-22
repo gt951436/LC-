@@ -1,40 +1,27 @@
 class Solution {
 public:
     int countDistinct(vector<int>& nums, int k, int p) {
-        int n=nums.size();
-        set<vector<int>>ans;
+        unordered_set<string> uniqueSubarrays;
+        int n = nums.size();
         
-        int i,j;
-        for(i=0;i<n;i++)
-        {
-            vector<int>v;
-            int cnt=0;
-            for(j=i;j<n;j++)
-            {
-                v.push_back(nums[j]);
-                if(nums[j]%p==0)
-                    ++cnt;
-                if(cnt>k)
+        for (int i = 0; i < n; ++i) {
+            vector<int> subarray;
+            int countDivisible = 0;
+            for (int j = i; j < n; ++j) {
+                subarray.push_back(nums[j]);
+                if (nums[j] % p == 0) {
+                    ++countDivisible;
+                }
+                if (countDivisible > k) {
                     break;
-                ans.insert(v);   
+                }
+                string subarrayStr = to_string(subarray[0]);
+                for (int idx = 1; idx < subarray.size(); ++idx) {
+                    subarrayStr += "," + to_string(subarray[idx]);
+                }
+                uniqueSubarrays.insert(subarrayStr);
             }
         }
-        return ans.size();
+        return uniqueSubarrays.size();
     }
-//     int atmost(int k,int p,vector<int>& nums){
-//         int s=0,e=0;
-//         int ans=0;
-//         for(e=0;e<nums.size();++e){
-//            if (nums[e] % p == 0) {
-//                 k -= 1;
-//             }
-//             while (k < 0) {
-//                 if (nums[s] % p == 0)
-//                     k++;
-//                 s++;
-//             }
-//             ans += (e - s + 1);
-//         }
-//         return ans;
-//     }
 };
