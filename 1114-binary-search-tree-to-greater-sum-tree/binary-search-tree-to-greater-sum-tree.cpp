@@ -13,33 +13,33 @@
 class Solution {
 public:
     TreeNode* bstToGst(TreeNode* root) {
-        vector<int> pfxSumVal;
-        InorderTraversal(root, pfxSumVal);
-        int pfxSum = 0;
-        for (int i = pfxSumVal.size() - 1; i >= 0; --i) {
-            pfxSum += pfxSumVal[i];
-            pfxSumVal[i] = pfxSum;
+        vector<int> sfxSumVal;
+        InorderTraversal(root, sfxSumVal);
+        int sfxSum = 0;
+        for (int i = sfxSumVal.size() - 1; i >= 0; --i) {
+            sfxSum += sfxSumVal[i];
+            sfxSumVal[i] = sfxSum;
         }
-        newVal(root, pfxSumVal);
+        newVal(root, sfxSumVal);
         return root;
     }
 
 private:
-    void InorderTraversal(TreeNode* root, vector<int>& pfxSumVal) {
+    void InorderTraversal(TreeNode* root, vector<int>& sfxSumVal) {
         if (root == NULL)
             return;
-        InorderTraversal(root->left, pfxSumVal);
-        pfxSumVal.push_back(root->val);
-        InorderTraversal(root->right, pfxSumVal);
+        InorderTraversal(root->left, sfxSumVal);
+        sfxSumVal.push_back(root->val);
+        InorderTraversal(root->right, sfxSumVal);
     }
-    int idx;
-    void newVal(TreeNode* root, vector<int>& pfxSumVal) {
+    int idx; //idx being a class member retains it's values over recursive calls
+    void newVal(TreeNode* root, vector<int>& sfxSumVal) {
         if (root == NULL) {
             return;
         }
-        newVal(root->left, pfxSumVal);
-        root->val = pfxSumVal[idx];
+        newVal(root->left, sfxSumVal);
+        root->val = sfxSumVal[idx];
         idx += 1;
-        newVal(root->right, pfxSumVal);
+        newVal(root->right, sfxSumVal);
     }
 };
