@@ -13,17 +13,33 @@
 class Solution {
 public:
     TreeNode* bstToGst(TreeNode* root) {
+        vector<int> pfxSumVal;
+        InorderTraversal(root, pfxSumVal);
         int pfxSum = 0;
-        reverseInorder(root, pfxSum);
+        for (int i = pfxSumVal.size() - 1; i >= 0; --i) {
+            pfxSum += pfxSumVal[i];
+            pfxSumVal[i] = pfxSum;
+        }
+        newVal(root, pfxSumVal);
         return root;
     }
-    void reverseInorder(TreeNode* root, int& pfxSum) {
+
+private:
+    void InorderTraversal(TreeNode* root, vector<int>& pfxSumVal) {
         if (root == NULL)
             return;
-        // reverese inorder traversal
-        reverseInorder(root->right,pfxSum);
-        pfxSum += (root->val); // add parent root value bcoz greater than and equal values..
-        root->val = pfxSum;
-        reverseInorder(root->left,pfxSum);
+        InorderTraversal(root->left, pfxSumVal);
+        pfxSumVal.push_back(root->val);
+        InorderTraversal(root->right, pfxSumVal);
+    }
+    int idx;
+    void newVal(TreeNode* root, vector<int>& pfxSumVal) {
+        if (root == NULL) {
+            return;
+        }
+        newVal(root->left, pfxSumVal);
+        root->val = pfxSumVal[idx];
+        idx += 1;
+        newVal(root->right, pfxSumVal);
     }
 };
