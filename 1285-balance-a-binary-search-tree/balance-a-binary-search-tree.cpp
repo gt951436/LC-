@@ -43,4 +43,6 @@ public:
         TreeNode *newRight = arrayToBST(arr, mid + 1, e);
         return new TreeNode(arr[mid],newLeft,newRight);
     }
+    // O(N) -->TC   O(N) --> SC
+    // DSW ALGO --> O(1) --> S.C. AND O(N) --> T.C.
 };
