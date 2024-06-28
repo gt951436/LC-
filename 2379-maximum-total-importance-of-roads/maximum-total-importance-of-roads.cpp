@@ -8,7 +8,7 @@ public:
         }
         sort(deg.begin(), deg.end());
         long long totalImp = 0;
-        for (long long i=0;i<deg.size();++i) {
+        for (long long i=0;i<n;++i) {
             totalImp += ((i + 1) * deg[i]);
         }
         return totalImp;
