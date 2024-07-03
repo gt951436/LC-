@@ -4,6 +4,7 @@ public:
         int n = nums.size();
         if (n <= 4)
             return 0;
+        // O(nlogn) TC
         sort(nums.begin(), nums.end());
         int minDiff = INT_MAX;
         // last 3 elements deleted
