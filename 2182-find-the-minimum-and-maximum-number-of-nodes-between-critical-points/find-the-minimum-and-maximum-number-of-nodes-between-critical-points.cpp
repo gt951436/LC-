@@ -11,32 +11,29 @@
 class Solution {
 public:
     vector<int> nodesBetweenCriticalPoints(ListNode* head) {
-        ListNode* pre = head;
-        ListNode* cur = head->next;
-        vector<int> ans = {-1, -1};
-        int prePosition = -1, curPosition = -1, firstPosition = -1,
-            position = 0;
-        while (cur->next != NULL) {
-            if ((cur->val < pre->val && cur->val < cur->next->val) ||
-                (cur->val > pre->val && cur->val > cur->next->val)) {
-                // local
-                prePosition = curPosition;
-                curPosition = position;
-                if (firstPosition == -1) {
-                    firstPosition = position;
-                }
-                if (prePosition != -1) {
-                    if (ans[0] == -1)
-                        ans[0] = curPosition - prePosition;
-                    else
-                        ans[0] = min(ans[0], curPosition - prePosition);
-                    ans[1] = position - firstPosition;
-                }
-            }
-            position++;
-            pre = cur;
-            cur = cur->next;
+        vector<int> nodeValues;
+        while (head != NULL) {
+            nodeValues.push_back(head->val);
+            head = head->next;
         }
-        return ans;
+        if (nodeValues.size() < 3) {
+            return {-1, -1};
+        }
+        vector<int> idx;
+        for (int i = 1; i < nodeValues.size() - 1; ++i) {
+            if ((nodeValues[i] > nodeValues[i - 1] && nodeValues[i] > nodeValues[i + 1]) ||
+                (nodeValues[i] < nodeValues[i - 1] && nodeValues[i] < nodeValues[i + 1])) {
+                idx.push_back(i);
+            }
+        }
+        if (idx.size() < 2) {
+            return {-1, -1};
+        }
+        int minDist = INT_MAX;
+        int maxDist = idx.back() - idx.front();
+        for (int i = 1; i < idx.size(); ++i) {
+            minDist = min(minDist, idx[i] - idx[i - 1]);
+        }
+        return {minDist, maxDist};
     }
 };
