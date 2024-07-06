@@ -6,6 +6,6 @@ public:
         if (effectiveTime <= n - 1) {
             return effectiveTime + 1;
         }
-        return (n - 1) + (n - effectiveTime);
+        return (2*n - 1 - effectiveTime);//(n-1)+(n-effTime)
     }
 };
