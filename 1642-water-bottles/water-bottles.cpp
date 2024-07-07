@@ -3,10 +3,11 @@ public:
     int numWaterBottles(int numBottles, int numExchange) {
         int Drunk = 0;
         while (numBottles >= numExchange) {
-            Drunk += numExchange;
-            numBottles-=numExchange;
-            numBottles+=1;
+            int newBottles = numBottles / numExchange;
+            Drunk += (numExchange * newBottles);
+            numBottles -= (numExchange * newBottles);
+            numBottles += newBottles;
         }
-        return numBottles+Drunk;
+        return Drunk + numBottles; // in case numBottles<numExchage
     }
 };
