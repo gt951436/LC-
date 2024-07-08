@@ -8,12 +8,10 @@ public:
             i += 1;
         }
         while (q.size() > 1) {
-            int j = 1;
-            while (j <= k - 1) {
+            for (int j = 1; j <= k - 1; ++j) {
                 int tp = q.front();
                 q.push(tp);
                 q.pop();
-                ++j;
             }
             q.pop();
         }
