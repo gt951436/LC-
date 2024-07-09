@@ -8,6 +8,7 @@ public:
                 CT[i] = customers[i][0] + customers[i][1];
             else {
                 if (CT[i - 1] < customers[i][0])
+                // AT[i] > CT[i-1]
                     CT[i] = customers[i][0] + customers[i][1];
                 else
                     CT[i] = CT[i - 1] + customers[i][1];
