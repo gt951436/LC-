@@ -1,15 +1,15 @@
 class Solution {
 public:
     int minOperations(vector<string>& logs) {
-        stack<string> stk;
+        int folderCnt = 0;
         for (int i = 0; i < logs.size(); ++i) {
             if (logs[i] == "../") {
-                if (!stk.empty()) {
-                    stk.pop();
+                if (folderCnt > 0) {
+                    --folderCnt;
                 }
             } else if (logs[i] != "./")
-                stk.push(logs[i]);
+                ++folderCnt;
         }
-        return stk.size();
+        return folderCnt;
     }
 };
