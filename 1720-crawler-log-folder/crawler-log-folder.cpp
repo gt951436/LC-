@@ -6,6 +6,8 @@ public:
             if (logs[i] == "../") {
                 if (folderCnt > 0) {
                     --folderCnt;
+                } else {
+                    folderCnt = 0;
                 }
             } else if (logs[i] != "./")
                 ++folderCnt;
