@@ -11,25 +11,20 @@ public:
         }
         return totPts;
     }
-    int removeSub(string& s, string sub,
-                  int pts) { // pts-->x/y AND sub.size()=2 (given)
-        stack<char> stk;
+    int removeSub(string& s, string sub, int pts) {
+        // pts-->x/y AND sub.size()=2 (given)
+        string temp;
         int subRemPoints = 0; // points after removal of substring
         for (char ch : s) {
-            if (!stk.empty() &&
-                (stk.top() == sub.front() && ch == sub.back())) {
-                stk.pop();
+            if (!temp.empty() &&
+                (temp.back() == sub.front() && ch == sub.back())) {
+                temp.pop_back();
                 subRemPoints += pts;
             } else {
-                stk.push(ch);
+                temp.push_back(ch);
             }
         }
-        s = ""; // dobara se string bnaare substring remove krne ke baad
-        while (!stk.empty()) {
-            s += stk.top();
-            stk.pop();
-        }
-        reverse(s.begin(), s.end()); // bachaa hua string after removing sub
+        s = temp; // bachaa hua string after removing sub
         return subRemPoints;
     }
 };
