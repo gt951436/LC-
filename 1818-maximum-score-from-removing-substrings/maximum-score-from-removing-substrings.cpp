@@ -24,8 +24,8 @@ public:
                 stk.push(ch);
             }
         }
-        // s = "";
-        s.clear();
+        s = "";
+        // s.clear();
         while (!stk.empty()) {
             s += stk.top();
             stk.pop();
