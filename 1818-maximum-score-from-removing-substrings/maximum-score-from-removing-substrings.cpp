@@ -12,7 +12,7 @@ public:
         return totPts;
     }
     int removeSub(string& s, string sub,
-                  int pts) { // pts-->x/y AND sub.size()=2
+                  int pts) { // pts-->x/y AND sub.size()=2 (given)
         stack<char> stk;
         int subRemPoints = 0; // points after removal of substring
         for (char ch : s) {
@@ -24,8 +24,7 @@ public:
                 stk.push(ch);
             }
         }
-        s = "";
-        // s.clear();
+        s = ""; // dobara se string bnaare substring remove krne ke baad
         while (!stk.empty()) {
             s += stk.top();
             stk.pop();
