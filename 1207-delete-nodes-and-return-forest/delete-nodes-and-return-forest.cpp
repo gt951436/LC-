@@ -14,10 +14,8 @@ class Solution {
 public:
     vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
         vector<TreeNode*> ans;
-        unordered_set<int> st;
-        for (int& it : to_delete) {
-            st.insert(it);
-        }
+        unordered_set<int> st(to_delete.begin(),to_delete.end());
+    
         deleteNodeHelper(root, st, ans); // pass ans by reference nahi to har recursive call pe naya vector banega!
 
         if (st.find(root->val) == st.end()) { // root ko delete karna h ya nhai?
