@@ -26,6 +26,7 @@ public:
             ans.push_back(nums[it.second]);
         }
         nums = ans;
+        ans.clear();
         return nums;
     }
 };
