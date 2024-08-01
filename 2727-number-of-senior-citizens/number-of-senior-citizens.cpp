@@ -1,4 +1,3 @@
-#include <bits/stdc++.h>
 class Solution {
 public:
     int countSeniors(vector<string>& details) {
@@ -7,7 +6,8 @@ public:
             string age;
             age = details[i][11];
             age += details[i][12];
-            if(age>"60"){
+            int ans = stoi(age);
+            if (ans > 60) {
                 ++cnt;
             }
         }
