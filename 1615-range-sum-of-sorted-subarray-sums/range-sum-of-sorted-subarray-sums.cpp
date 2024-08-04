@@ -13,7 +13,7 @@ public:
         sort(pfxSum.begin(), pfxSum.end());
         int ans = 0;
         for (int i = left - 1; i <= right - 1; ++i) {
-            ans = (ans % MOD + pfxSum[i] % MOD) % MOD;
+            ans = (ans + pfxSum[i]) % MOD;
         }
         return ans;
     }
