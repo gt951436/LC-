@@ -1,5 +1,5 @@
 class Solution {
-    public int MOD = 1000000007;
+    public int MOD = (int) 1e9 + 7;
 
     public int rangeSum(int[] nums, int n, int left, int right) {
         ArrayList<Integer> pfxSum = new ArrayList<>();
