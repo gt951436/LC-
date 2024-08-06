@@ -1,14 +1,20 @@
 class Solution {
 public:
     int minimumPushes(string word) {
-        vector<int> f(26, 0);
-        for (int i = 0; i < word.length(); ++i) {
-            f[word[i] - 'a']++;
+        map<char, int> f;
+        for (char ch : word) {
+            f[ch]++;
         }
-        sort(f.begin(), f.end(), greater<int>());
+        priority_queue<int> pq;
+        for (auto it : f) {
+            pq.push(it.second);
+        }
         int timesCnt = 0;
-        for (int i = 0; i < 26; ++i) {
-            timesCnt += (f[i] * (i / 8 + 1));
+        int i = 0;
+        while (!pq.empty()) {
+            timesCnt += ((i / 8) + 1) * pq.top();
+            pq.pop();
+            i += 1;
         }
         return timesCnt;
     }
